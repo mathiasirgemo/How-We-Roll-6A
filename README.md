@@ -1,2 +1,4 @@
 # How-We-Roll-6A
-Gruppe-repository for oppgaven How-We-Roll, Gruppe 6A UIA H2022
+
+Fork fra Gruppe-repo til 6A. Har laget 2 sider, en til gruppekalender og 
+1 til referatside.

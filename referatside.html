@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="no-NB">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Møtereferat</title>
+   <link rel="stylesheet" href="/Css/style.css">
+   <link rel="stylesheet" href="/Css/referatside.css">
+</head>
+<body>
+   <div class="navbar">
+      <ul>
+         <li><a href="index.html">Forside</a></li>
+         <li><a href="kontaktkort.html">Kontaktkort</a></li>
+         <li><a href="WebForm.html">WebForm</a></li>
+         <li><a href="WebRapport.html">Web-Rapport</a></li>
+         <li><a href="kalender.html">Kalender</a></li>
+         <li><a href="referatside.html" style="background-color: black;">Referat</a></li>
+      </ul>
+      </div>
+      <div class="banner">
+         <div class="bannerText">
+            <h1>Møte Referat</h1>
+            <h5>Skriv inn møtereferater på denne siden. Klikk publiser så blir den lagret på nettsiden til neste gang.</h5>
+         </div>
+         <div class="form">
+            <form id="referatform" action="https://bacit.info/" method="post"> <!--Poster data til bacit server-->
+            <label for="dato">Dagens Dato</label>
+           <input type="date" name="dato" id="dato" required>
+          <label>Navn på referent</label> <input type="text" name="referent" id="Referent">
+           <div class="checkbox"> <!--Alle gruppemedlemmer, de som er på møtet skal krysses av-->
+            <label for="mathias">Mathias</label><input type="checkbox" name="Mathias" id="mathias"> 
+            <label for="Ine">Ine</label> <input type="checkbox" name="Ine" id="Ine">
+            <label for="Josef">Josef</label><input type="checkbox" name="Josef" id="Josef">
+            <label for="Jaime">Jaime</label><input type="checkbox" name="Jaime" id="Jaime">
+            <label for="Thomas">Thomas</label><input type="checkbox" name="Thomas" id="Thomas">
+            <label for="Lukasz">Lukasz</label><input type="checkbox" name="Lukasz" id="Lukasz">
+            <label for="Erik">Erik</label><input type="checkbox" name="Erik" id="Erik">
+           </div><br>
+           <label for="Hovedrefferat">Referat fra Møtet</label>
+          <input type="text" id="hovedreferat" style="height:150px;"></input>
+          <button id="referatbtn" type="submit">Lagre Referat</button>
+         </form>
+
+         <div>
+            <span id="data">
+            </span>   
+         </div>
+         </div>
+<script>
+   let myForm = document.getElementById("referatform");
+
+   let table = document.getElementById("data");
+   myForm.addEventListener("submit", (e)=>{
+      e.preventDefault(); //gjør at form ikke refresher
+      submit();
+   });
+
+   const submit = ()=>{
+      let dato = document.getElementById("dato").value;
+      let referent = document.getElementById("Referent").value;
+      let deltaker = document.getElementsByClassName("checkbox");
+      let hRefferat = document.getElementById("hovedreferat").value; //henter element fra html
+
+
+      let newArray = [dato,referent,deltaker,hRefferat];
+      newArray.forEach((item)=>{
+         var li = document.createElement("li");
+         var text = document.createTextNode(item);
+         li.appendChild(text); //legger til text attribut
+         table.appendChild(li);
+      })
+      myForm.reset(); //resetter form uten å refreshe siden
+   }
+
+</script>
+</body>
+</html>
