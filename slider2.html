@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+
+    <div class="header">
+        <h1 class="h1">GRUPPE 6A</h1>
+        <p class="p1">Web-form</p>
+        <button class="a a1">Hjem</button>
+        &nbsp
+        <button class="a a1">Om oss</button>
+        &nbsp
+        <button class="a a1">Kalender</button>
+        &nbsp
+        <button class="a a1">Web-form</button>
+        &nbsp
+        <button class="a a1">Web-rapport</button>
+    </div>
+
+    <style>
+        body {
+            background: rgb(175, 189, 194);
+            
+        }
+        .wrapper {
+            width: 450px;
+            background: rgb(175, 194, 199);
+            padding: 0px;
+            margin-bottom: 50px;
+            
+        }
+        .wrapper .input-data{
+            height: 40px;
+            width: 100%;
+            position: relative; 
+        }
+
+        .wrapper .input-data input{
+            height: 100%;
+            width: 100%;
+            border: none;
+            font-size: 17px;
+           
+        }
+        .input-data input:focus ~ label,
+        .input-data input:valid ~ label{
+            transform: translateX(-45px);
+            font-size: 15px;
+            color: #ffffff
+        }
+        .wrapper .input-data label{
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            color: grey;
+            pointer-events: none; 
+            transition: all 0.2s ease;
+        }
+        
+    
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: #336B87;
+            color: white;
+            font-size: 30px;
+            margin-bottom: 50px;
+
+        }
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 3px;
+            border-radius: 5px;  
+            background: #305773; /* farge på streken */
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            border-color: black;
+        }
+        .a {
+            transition-duration: 0.4s;
+            padding: 12px 20px;
+            border: none;
+            text-align: center;
+            border-radius: 25px;
+            background-color: #90AFC5;
+            color: #2A3132;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+            font-size: 60%;
+        }
+
+        .a1 {
+           background-color: #90AFC5; 
+           color: #2A3132;
+        }
+
+        .a1:hover {
+            background-color: #305773;
+            color: azure;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%; 
+            background: #d53612;
+            cursor: pointer;
+  
+        }
+
+        .slidecontainer {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            border: none;
+    
+        }
+
+
+   
+
+        .alignleft {
+	        float: left;
+             margin-bottom: 0;
+   
+        }
+
+        .alignright {
+	        float: right;
+            margin-bottom: 0;
+        }
+       .b {
+        transition-duration: 0.4s;
+        padding: 12px 20px;
+        border: none;
+        text-align: center;
+        border-radius: 25px;
+        background-color: #d53612ac;
+        color: #2A3132;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+        font-size: 90%;
+        margin-top: 50px;
+        margin-bottom: 200px;
+        float:right;
+       }
+       .b:hover {
+        background-color: #305773;
+        color: azure;
+       }
+          
+    </style>
+</head>
+
+<body>
+    
+    <div class="slidecontainer"> 
+        <div class="wrapper">
+            <div class="input-data">
+                <input type="text" required>
+                <div class="underline"></div>
+                <label>Name</label>
+            </div>
+        </div>
+        <div id="textbox">
+            <p class="alignleft">Dag</p>
+            <p class="alignright">Kveld</p>
+          </div>
+        <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+      </div>
+
+<br>
+<br>
+      <div class="slidecontainer"> 
+        <div id="textbox">
+            <p class="alignleft">Alene</p>
+            <p class="alignright">Teams</p>
+          </div>
+        <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+      </div>
+<br>
+<br>
+    <div class="slidecontainer"> 
+        <div id="textbox">
+            <p class="alignleft">Strukturert</p>
+            <p class="alignright">Ustrukturert</p>
+        </div>
+    <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+</div>
+<br>
+<br>
+<div class="slidecontainer"> 
+    <div id="textbox">
+        <p class="alignleft">Hjemmekontor</p>
+        <p class="alignright">Kontor</p>
+      </div>
+    <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+  </div>
+  <br>
+  <br>
+  <div class="slidecontainer"> 
+    <div id="textbox">
+        <p class="alignleft">Fleksitid</p>
+        <p class="alignright">Fast arbeidstid</p>
+      </div>
+    <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+  </div>
+  <br>
+  <br>
+  <div class="slidecontainer"> 
+    <div id="textbox">
+        <p class="alignleft">Planlegge</p>
+        <p class="alignright">Starte rett på saken</p>
+      </div>
+    <input type="range" min="0" max="10" value="5" class="slider" id="myRange">
+    <button class="b">Send inn</button> 
+  </div>
+
+
+
+
+
+</body>
+</html>
