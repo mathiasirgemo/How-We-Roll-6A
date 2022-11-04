@@ -34,3 +34,8 @@
       display: flex;
       flex-flow: column;
    }
+   .header{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
