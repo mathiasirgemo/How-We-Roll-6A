@@ -8,13 +8,7 @@
    align-items: left;
    border: 2px dotted;
    border-color: black;
-   }
-   .checkbox{
-      padding-left: auto;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-   }
+}
    label{
       margin: auto;
       font-size: 20px;

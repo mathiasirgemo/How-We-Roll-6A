@@ -1,82 +1,99 @@
 <!DOCTYPE html>
-<html lang="no-NB">
+<html lang='no-NO'>
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
    <title>Kalender</title>
-   <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="Kalenderside.css">
+   <link rel='stylesheet' href='style.css'>
+   <link rel='stylesheet' href='Kalenderside.css'>
 </head>
 <body>
-  <div class="header">     
-  <h1>Gruppe Kalender</h1>
-         <h5>Her fyller vi inne ting som skjer i fremtiden i kalenderen. Lett oversiktlig for alle medlemmene.</h5>
-  </div>
-<div id="BODY1">
-   <div id="container">
-      <div id="header"></div>
-      <div id="monthDisplay"></div>
-      <div>
-         <button id="tilbakeKnapp">Tilbake</button>
-         <button id="nesteButton">Neste</button>
-      </div>
-      <div id="ukedager">
-         <div>Mandag</div>
-         <div>Tirsdag</div>
-         <div>Onsdag</div>
-         <div>Torsdag</div>
-         <div>Fredag</div>
-         <div>Lørdag</div>
-         <div>Søndag</div>
-      </div>
-
-
-      <div id="calendar"></div>
-   </div>
-   <div id="newEventModal">
-      <h2>Nytt gjøremål</h2>
-
-      <input id="eventTitleInput" placeholder="Gjøremål" />
-
-      <button id="saveButton">Lagre</button>
-      <button id="cancelButton">Avbryt</button>
+  <div class='navbar'>
+    <ul>
+       <li><a href='#'>Forside</a></li>
+       <li><a href='#'>Kontaktkort</a></li>
+       <li><a href='#'>WebForm</a></li>
+       <li><a href='#'>Web-Rapport</a></li>
+       <li><a href='kalender.html' style='background-color: black;'>Kalender</a></li>
+       <li><a href='referatside.html'>Referat</a></li>
+    </ul>
+    </div>
+    <div class='banner'>
+       <div class='bannerText'>
+          <h1>Kalender</h1>
+          <h5>Fyll inn informasjon om møter, gruppetimer og begivenheter i kalenderen</h5>
+       </div>
     </div>
 
-    <div id="deleteEventModal">
+<div id='program'>
+   <div id='container'>
+      <div id='header'>
+      <div id='monthDisplay'></div>
+    </div>
+      <div>
+        <!--Knapper for å velge hvilken måned-->
+         <button id='tilbakeKnapp'>Tilbake</button> 
+         <button id='nesteButton'>Neste</button>
+      </div>
+      <div id='ukedager'>
+        <div>Søndag</div>
+        <div>Mandag</div>
+        <div>Tirsdag</div>
+        <div>Onsdag</div>
+        <div>Torsdag</div>
+        <div>Fredag</div>
+        <div>Lørdag</div>
+      </div>
+
+
+      <div id='kalender'></div>
+   </div>
+   <div id='newEventModal'>
+      <h2>Nytt gjøremål</h2>
+      <input id='eventForfatter' placeholder="Navnet ditt..">
+      <input id='eventTitleInput' placeholder='Gjøremål'>
+      <!--Knapper for å lagre eller avbryte et gjøremål-->
+      <button id='saveButton'>Lagre</button>
+      <button id='cancelButton'>Avbryt</button>
+    </div>
+
+    <div id='deleteEventModal'>
       <h2>Event</h2>
 
-      <p id="eventText"></p>
-
-      <button id="deleteButton">Slett</button>
-      <button id="closeButton">Lukk</button>
+      <p id='eventText'></p>
+      <!--Knapper for å slette et eksiterende gjøremål eller avbryte handlingen-->
+      <button id='deleteButton'>Slett</button>
+      <button id='closeButton'>Lukk</button>
     </div>
 
-    <div id="modalBackDrop"></div>
+    <div id='modalBackDrop'></div>
 </div>
 
+<div id="spacer"></div> <!--Setter spacer for bedre brukervennlighet-->
 <script>
 let nav = 0; //setter navigasjon til 0
 let clicked = null; //setter standard til null;
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; //lagrer event i localStorage og parser inn igjen ved load
 
-const calendar = document.getElementById('calendar'); //henter element fra html
+const kalender= document.getElementById('kalender'); //henter element fra html
 const newEventModal = document.getElementById('newEventModal'); //henter element fra html
 const deleteEventModal = document.getElementById('deleteEventModal');  //henter element fra html
 const backDrop = document.getElementById('modalBackDrop'); //henter element fra html
 const eventTitleInput = document.getElementById('eventTitleInput'); //hener element fra html
-const ukedager = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag']; //lager array med ukedager
+const eventForfatter = document.getElementById('eventForfatter');
+const ukedager = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; //lager array med ukedager
 
 function openModal(date) {
   clicked = date;
 
   const eventForDay = events.find(e => e.date === clicked);
 
-  if (eventForDay) {
+  if (eventForDay) { //Hvis det finnes event så vises denne
     document.getElementById('eventText').innerText = eventForDay.title;
-    deleteEventModal.style.display = 'block'; //setter event for dato hvis ønskelig
+    deleteEventModal.style.display = 'block';
   } else {
-    newEventModal.style.display = 'block'; //displayer nytt event med block
+    newEventModal.style.display = 'block';
   }
 
   backDrop.style.display = 'block';
@@ -96,7 +113,7 @@ function load() { //funksjon som loader ny calender
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   
-  const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+  const dateString = firstDayOfMonth.toLocaleDateString('en-us', { //bruker en-us dager i array
     weekday: 'long', //setter ukedag til string
     year: 'numeric', //setter år til nummeric
     month: 'numeric', // --!!--
@@ -105,11 +122,11 @@ function load() { //funksjon som loader ny calender
   const paddingDays = ukedager.indexOf(dateString.split(', ')[0]); //finner ut hvilken dag måneden starter på, padding days er dager som ikke vises i kalenderen
 
   document.getElementById('monthDisplay').innerText = 
-    `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+    `${dt.toLocaleDateString('no-NO', { month: 'long' })} ${year}`; //tar månedene i et år og displayer disse over kalenderen på nettsiden ved bruk av innerHTML.
 
-  calendar.innerHTML = '';
+  kalender.innerHTML = ''; //Fjerner all divs og elementer fra calenderen før forLoop
 
-  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+  for(let i = 1; i <= paddingDays + daysInMonth; i++) { //setter antall dager i mnd
     const daySquare = document.createElement('div');
     daySquare.classList.add('day');
 
@@ -132,10 +149,10 @@ function load() { //funksjon som loader ny calender
 
       daySquare.addEventListener('click', () => openModal(dayString));
     } else {
-      daySquare.classList.add("padding");
+      daySquare.classList.add('padding');
     }
 
-    calendar.appendChild(daySquare);    
+    kalender.appendChild(daySquare);    
   }
 }
 
@@ -144,6 +161,7 @@ function closeModal() {
   newEventModal.style.display = 'none';
   deleteEventModal.style.display = 'none';
   backDrop.style.display = 'none';
+  eventForfatter.value = '';
   eventTitleInput.value = '';
   clicked = null;
   load();
@@ -155,6 +173,7 @@ function saveEvent() {
 
     events.push({
       date: clicked,
+      Navn: eventForfatter.value,
       title: eventTitleInput.value,
     });
 
@@ -171,6 +190,8 @@ function deleteEvent() {
   closeModal();
 }
 
+
+//Setter funksjon på knappene, nesteButton plusser på 1stk i NAV, gjør at du går 1steg frem, og motsatt med tilbakeKnapp.
 function initButtons() {
   document.getElementById('nesteButton').addEventListener('click', () => {
     nav++;
