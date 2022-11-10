@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="no-NB">
+    <head>
+        <title>Slider</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width", initial-scale="1.0">
+        <link rel="stylesheet" href="slider.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body style="background-color: #E3E2DF;">
+    <div class="navbar">
+        <ul>
+           <li><a href="#">Forside</a></li>
+           <li><a href="#">Kontaktkort</a></li>
+           <li><a href="#" style="background-color: black;">WebForm</a></li>
+           <li><a href="#">Web-Rapport</a></li>
+           <li><a href="#">Kalender</a></li>
+           <li><a href="#">Referat</a></li>
+        </ul>
+        </div>
+        <div class="banner">
+           <div class="bannerText">
+              <h1>Side Navn Her</h1>
+              <h5>Her kommer informasjon om siden</h5>
+           </div>
+    <section class="form">
+        <h1>Fyll ut informasjon</h1>
+        <form>
+            <p>
+                <label for="navn">Navn:&nbsp;</label>
+                <input type="text" name="navn" id="data1" placeholder="Ola Nordmann">
+                <label for="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <!-- Veldig upraktisk, men en løsning for å få tekst boksen til å være sentrert  -->
+            </p>
+            <p>
+                <label for="email">Email:&nbsp;</label>
+                <input type="email" name="email" id="data2" placeholder="eksempel@email.com">
+                <label for="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            </p>
+            <p>
+                <label for="tfon">Telefon nr:&nbsp;</label>
+                <input type="tel" name="tfon" id="data3" placeholder="(+47) XXX XX XXX">
+                <label for="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            </p>
+        </form>
+        <br><br>
+    </section>
+    <div class="slidecontainer">
+            <label class="textstyle" for="range1">&nbsp;&nbsp;Introvert</label>
+            <input type="range" min="1" max="100" value="50" class="slider" id="range1">
+            <label class="textstyle" for="range1"> Ekstrovert </label>
+        <br><br> 
+            <label class="textstyle" for="range2";>Selvstendig arbeid&nbsp;</label>
+            <input type="range" min="1" max="100" value="50" class="slider" id="range2">
+            <label class="textstyle" for="range2";>Samarbeid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <br><br>
+            <label class="textstyle" for="range3";>Morgenfugl</label>
+            <input type="range" min="1" max="100" value="50" class="slider" id="range3">   <!-- fra 1 til 100, begynner på 50. type range aka slider-->
+            <label class="textstyle" for="range3";>Natteravn&nbsp;&nbsp;</label>
+        <br><br>
+            <label class="textstyle" for="range4";>Fast tid&nbsp;&nbsp;</label>
+            <input type="range" min="1" max="100" value="50" class="slider" id="range4">
+            <label class="textstyle" for="range4";>Fleksibel</label>
+        <br><br><br><br>
+            <button type="submit" class="knapp">&nbsp;&nbsp;Submit&nbsp;&nbsp;</button>
+        <br><br><br><br>
+            <label for="id">Kopier id:</label>
+            <input type="text" name="id" id="id1" style="width:35%;">
+            <label for="id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <br><br><br><br>
+    </div>
+</body>
+</html> 
