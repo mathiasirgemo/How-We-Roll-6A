@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang='no-NO'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>Kalender</title>
+   <link rel='stylesheet' href='style.css'>
+   <link rel='stylesheet' href='Kalenderside.css'>
+</head>
+<body>
+  <div class='navbar'>
+    <ul>
+       <li><a href='#'>Forside</a></li>
+       <li><a href='#'>Kontaktkort</a></li>
+       <li><a href='#'>WebForm</a></li>
+       <li><a href='#'>Web-Rapport</a></li>
+       <li><a href='kalender.html' style='background-color: black;'>Kalender</a></li>
+       <li><a href='referatside.html'>Referat</a></li>
+    </ul>
+    </div>
+    <div class='banner'>
+       <div class='bannerText'>
+          <h1>Kalender</h1>
+          <h5>Fyll inn informasjon om møter, gruppetimer og begivenheter i kalenderen</h5>
+       </div>
+    </div>
+
+<div id='program'>
+   <div id='container'>
+      <div id='header'>
+      <div id='monthDisplay'></div>
+    </div>
+      <div>
+        <!--Knapper for å velge hvilken måned-->
+         <button id='tilbakeKnapp'>Tilbake</button> 
+         <button id='nesteButton'>Neste</button>
+      </div>
+      <div id='ukedager'>
+        <div>Søndag</div>
+        <div>Mandag</div>
+        <div>Tirsdag</div>
+        <div>Onsdag</div>
+        <div>Torsdag</div>
+        <div>Fredag</div>
+        <div>Lørdag</div>
+      </div>
+
+
+      <div id='kalender'></div>
+   </div>
+   <div id='newEventModal'>
+      <h2>Nytt gjøremål</h2>
+      <input id='eventForfatter' placeholder="Navnet ditt..">
+      <input id='eventTitleInput' placeholder='Gjøremål'>
+      <!--Knapper for å lagre eller avbryte et gjøremål-->
+      <button id='saveButton'>Lagre</button>
+      <button id='cancelButton'>Avbryt</button>
+    </div>
+
+    <div id='deleteEventModal'>
+      <h2>Event</h2>
+
+      <p id='eventText'></p>
+      <!--Knapper for å slette et eksiterende gjøremål eller avbryte handlingen-->
+      <button id='deleteButton'>Slett</button>
+      <button id='closeButton'>Lukk</button>
+    </div>
+
+    <div id='modalBackDrop'></div>
+</div>
+
+<div id="spacer"></div> <!--Setter spacer for bedre brukervennlighet-->
+<script>
+let nav = 0; //setter navigasjon til 0
+let clicked = null; //setter standard til null;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; //lagrer event i localStorage og parser inn igjen ved load
+
+const kalender= document.getElementById('kalender'); //henter element fra html
+const newEventModal = document.getElementById('newEventModal'); //henter element fra html
+const deleteEventModal = document.getElementById('deleteEventModal');  //henter element fra html
+const backDrop = document.getElementById('modalBackDrop'); //henter element fra html
+const eventTitleInput = document.getElementById('eventTitleInput'); //hener element fra html
+const eventForfatter = document.getElementById('eventForfatter');
+const ukedager = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']; //lager array med ukedager
+
+function openModal(date) {
+  clicked = date;
+
+  const eventForDay = events.find(e => e.date === clicked);
+
+  if (eventForDay) { //Hvis det finnes event så vises denne
+    document.getElementById('eventText').innerText = eventForDay.title;
+    deleteEventModal.style.display = 'block';
+  } else {
+    newEventModal.style.display = 'block';
+  }
+
+  backDrop.style.display = 'block';
+}
+
+function load() { //funksjon som loader ny calender
+  const dt = new Date();
+
+  if (nav !== 0) {
+    dt.setMonth(new Date().getMonth() + nav);
+  }
+
+  const day = dt.getDate();
+  const month = dt.getMonth();
+  const year = dt.getFullYear();
+
+  const firstDayOfMonth = new Date(year, month, 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  
+  const dateString = firstDayOfMonth.toLocaleDateString('en-us', { //bruker en-us dager i array
+    weekday: 'long', //setter ukedag til string
+    year: 'numeric', //setter år til nummeric
+    month: 'numeric', // --!!--
+    day: 'numeric', // --!!--
+  });
+  const paddingDays = ukedager.indexOf(dateString.split(', ')[0]); //finner ut hvilken dag måneden starter på, padding days er dager som ikke vises i kalenderen
+
+  document.getElementById('monthDisplay').innerText = 
+    `${dt.toLocaleDateString('no-NO', { month: 'long' })} ${year}`; //tar månedene i et år og displayer disse over kalenderen på nettsiden ved bruk av innerHTML.
+
+  kalender.innerHTML = ''; //Fjerner all divs og elementer fra calenderen før forLoop
+
+  for(let i = 1; i <= paddingDays + daysInMonth; i++) { //setter antall dager i mnd
+    const daySquare = document.createElement('div');
+    daySquare.classList.add('day');
+
+    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+
+    if (i > paddingDays) {
+      daySquare.innerText = i - paddingDays;
+      const eventForDay = events.find(e => e.date === dayString);
+
+      if (i - paddingDays === day && nav === 0) {
+        daySquare.id = 'currentDay';
+      }
+
+      if (eventForDay) {
+        const eventDiv = document.createElement('div');
+        eventDiv.classList.add('event');
+        eventDiv.innerText = eventForDay.title;
+        daySquare.appendChild(eventDiv);
+      }
+
+      daySquare.addEventListener('click', () => openModal(dayString));
+    } else {
+      daySquare.classList.add('padding');
+    }
+
+    kalender.appendChild(daySquare);    
+  }
+}
+
+function closeModal() {
+  eventTitleInput.classList.remove('error');
+  newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventForfatter.value = '';
+  eventTitleInput.value = '';
+  clicked = null;
+  load();
+}
+
+function saveEvent() {
+  if (eventTitleInput.value) {
+    eventTitleInput.classList.remove('error');
+
+    events.push({
+      date: clicked,
+      Navn: eventForfatter.value,
+      title: eventTitleInput.value,
+    });
+
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal();
+  } else {
+    eventTitleInput.classList.add('error');
+  }
+}
+
+function deleteEvent() {
+  events = events.filter(e => e.date !== clicked);
+  localStorage.setItem('events', JSON.stringify(events));
+  closeModal();
+}
+
+
+//Setter funksjon på knappene, nesteButton plusser på 1stk i NAV, gjør at du går 1steg frem, og motsatt med tilbakeKnapp.
+function initButtons() {
+  document.getElementById('nesteButton').addEventListener('click', () => {
+    nav++;
+    load();
+  });
+
+  document.getElementById('tilbakeKnapp').addEventListener('click', () => {
+    nav--;
+    load();
+  });
+
+  document.getElementById('saveButton').addEventListener('click', saveEvent);
+  document.getElementById('cancelButton').addEventListener('click', closeModal);
+  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+  document.getElementById('closeButton').addEventListener('click', closeModal);
+}
+
+initButtons();
+load();
+</script>
+</body>
+</html>

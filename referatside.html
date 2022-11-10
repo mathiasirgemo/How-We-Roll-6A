@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang='no-NB'>
+<head>
+   <meta charset='UTF-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <title>Møtereferat</title>
+   <link rel='stylesheet' href='style.css'>
+   <link rel='stylesheet' href='referatside.css'>
+</head>
+<body>
+   <div class='navbar'>
+      <ul>
+         <li><a href='#'>Forside</a></li>
+         <li><a href='#'>Kontaktkort</a></li>
+         <li><a href='#'>WebForm</a></li>
+         <li><a href='#'>Web-Rapport</a></li>
+         <li><a href='kalender.html'>Kalender</a></li>
+         <li><a href='#' style='background-color: black;'>Referat</a></li>
+      </ul>
+      </div>
+      <div class='banner'>
+         <div class='bannerText'>
+            <h1>Gruppe Referat</h1>
+            <h5>På denne siden fyller du inn referat fra gruppemøter</h5>
+         </div>
+      </div>
+         <div>
+            <form id='referatform' action='https://bacit.info/' method='post'> <!--Poster data til bacit server-->
+            <label for='dato'>Dagens Dato</label>
+           <input type='date' name='dato' id='dato' required>
+          <label>Navn på referent</label> 
+          <input type='text' name='referent' id='Referent'>
+          <label for='oppmøte'>Hvor mange var på gruppemøte?</label>
+          <input type='number' id='oppmøte' min='1' max='7'>
+         <label for='hovedreferat'>Referat fra Møtet</label>
+          <textarea id="hovedreferat" name="hovedreferat" rows="8"></textarea>
+          <label for='agendaNeste'>Agenda til neste gruppemøte:</label>
+          <textarea id="agendaNeste" name="agendaNeste" rows="5"></textarea>
+          <button id='referatbtn' type='submit'>Lagre Referat</button>
+         </form>
+         <div>
+            <span id='data'>
+            </span>
+         </div>
+         </div>
+<script>
+ let myForm = document.getElementById('referatform');
+
+let table = document.getElementById('data');
+myForm.addEventListener('submit', (e)=>{
+   e.preventDefault(); //gjør at form ikke refresher
+   submit();
+});
+
+const submit = ()=>{
+   let dato = document.getElementById('dato').value;
+   let referent = document.getElementById('Referent').value;
+   let oppmøte = document.getElementById('oppmøte').value;
+   let hRefferat = document.getElementById('hovedreferat').value; //henter element fra html
+   let agenda = document.getElementById('agendaNeste').value;
+
+
+   let newArray = [dato,referent,oppmøte,hRefferat,agenda];
+   newArray.forEach((item)=>{
+      var li = document.createElement('li');
+      var text = document.createTextNode(item);
+      li.appendChild(text); //legger til text attribut
+      table.appendChild(li);
+   })
+   myForm.reset(); //resetter form uten å refreshe siden
+}
+</script>
+</body>
+</html>
