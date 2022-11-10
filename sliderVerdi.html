@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sliderRemembers</title>
+</head>
+<body>
+
+    <!--Styleklasser for elementer-->
+    <style>
+
+
+            .header1{
+
+                text-align: center;
+                margin-top: -1px;
+                margin-bottom: 70px;
+                padding: 30px 100px;
+                background-color: aqua;
+                border: solid;
+                border-color: rgb(100, 150, 255);
+                border-width: 5px;
+            }
+
+            .slider {
+                -webkit-appearance: none;  
+                appearance: none;
+                width: 30%; 
+                height: 6px;
+                background: #7577ff; 
+                outline: none; 
+                border-radius: 15px;
+            }
+
+
+            .slider::-webkit-slider-thumb{
+                appearance: none;
+                width: 20px; 
+                height: 20px; 
+                background: #2200ff; 
+                cursor: pointer; 
+                border-radius: 50%;
+            }
+
+            .knapp{
+                margin-left: 30px;
+                padding: 10px 50px;
+                border: solid;
+                font-size: 15px;
+                border-width: 4px;
+                border-radius: 20px;
+                background-color: aqua;
+                border-color: rgb(100, 150, 255);
+                box-shadow: 4px 5px 15px;
+                cursor: pointer;
+            }
+
+            .sliderTekst {
+                padding: 5px 10px;
+                border-radius: 8px;
+                border-color: rgb(100, 150, 255);;
+                background-color: aqua;
+                
+            }
+    </style>
+
+
+    <h1 class="header1">
+        Personlighetstest
+    </h1>
+
+    Trekk slidertommelen dit du føler stemmer, og deretter trykk på submitknappen for å lagre det!
+
+    <!--TekstBoks-->
+    <p>
+        <label for="fulltNavn"> Fullt Navn: </label>
+        <input type="text" id="fulltNavn">
+    </p>
+
+
+    <!--Første slider, viser verdi-->
+    <p> 
+    <label for="sliderHusk" class="sliderTekst" style="margin-left: 30%;"> introvert</label>
+    <input class="slider" type = "range" min="1" max="100" value="10" id="sliderHusk">
+    <label for="sliderHusk" class="sliderTekst"> extrovert</label>
+    <br>
+    <p style="margin-left: 40%;">Value: <span id="demo"></span>
+    </p>
+        
+
+<input class="knapp" type="submit" id="knappVerdi" style="margin-top: 20px; margin-bottom: 30px; margin-left: 40%;">
+
+
+
+  
+
+    <!--ID som husker verdi til slider1-->
+    <p style="margin-left: -100px; color: white;">
+     <span id="demo1"></span>    
+    </p>
+
+    <!--Videreknapp for neste side-->
+    <p>
+        <button class="sliderTekst" style="margin-top: 50px;"><a href="http://127.0.0.1:5500/sliderVerdi/lagretVerdi.html">Videre</a></button>
+
+    </p>
+
+    <window class="onload"></window>
+
+
+
+    <!--kaller på JS, kjører funkjsoner krevd for sliderverdiene-->
+    <script>
+
+var lagretNavn = document.getElementById("fulltNavn");
+
+var slider2 = document.getElementById("ost")
+var sliderE = document.getElementById("sliderHusk");
+var output = document.getElementById("demo");
+
+var storeSlider = document.querySelector(".slider");
+var knapp = document.querySelector(".knapp");
+var sVerdi = document.querySelector("#sliderHusk")
+
+var knapp = document.getElementById("knappVerdi");
+var kOutput = document.getElementById("demo1")
+
+
+output.innerHTML = sliderE.value;
+kOutput.innerHTML = sliderE.value;
+
+sliderE.oninput = function() {
+   output.innerHTML= this.value;
+   console.log(sliderE.value)
+
+};
+
+knapp.onclick = function() {
+    
+    kOutput.innerHTML = sliderE.value;
+    console.log(lagretNavn.value)
+    save_data();
+}
+
+function save_data() {
+    var input = document.getElementById("sliderHusk");
+    localStorage.setItem("server", input.value);
+}
+
+function load_data() {
+    var input = document.getElementById("sliderHusk");
+    var lagretNavn = document.getElementById("fulltNavn")
+        
+    //Sørger for at sliderVerdiene er de samme når man går tilbake
+    input.value = localStorage.getItem("server");
+}
+
+load_data();
+
+sliderE.oninput()
+
+knapp.onclick();
+
+
+
+    </script>
+    
+
+
+</body>
+
+</html>
+
+
