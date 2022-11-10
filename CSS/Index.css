@@ -86,7 +86,7 @@
   margin:0;
 }
 
-/*Filter for bilder styles for eksperimentering*/
+/*Filter for bilder styles for eksperimentering for hvilken filter passer best*/
 .saturate { filter: saturate(3); }
 .grayscale { filter: grayscale(100%); }
 .contrast { filter: contrast(160%); }
