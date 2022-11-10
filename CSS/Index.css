@@ -43,15 +43,13 @@
     font-size: 25px;
  }
 
-
-
  /* Innhold */
  .innhold {
    display: grid;
    align-items: center;
    width: auto;
    height: auto;
-   grid-template-columns: repeat(14, 100px); /* 14 kolonner */
+   grid-template-columns: repeat(14, 1fr); /* 14 kolonner */
    grid-template-rows: repeat(6, 100px); /* 6 rader */
    background-color: #FFFFFF;
    padding: 0px;
