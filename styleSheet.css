@@ -1,0 +1,112 @@
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(211, 211, 211);
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 320px;
+    height: 400px;
+    perspective: 800px;
+    margin-top: 90px;
+    float: left;
+    padding-left: 30px;
+    /*oppsettet på alt som er i containeren. containeren er selve kontaktkortet. bestemmer størrelse og plassering*/
+}
+
+.card {
+    height: 100%;
+    width: 100%;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+}
+
+.icons {
+    display: flex;
+    align-items: center; /* ikonene og tekst er centrert som at ikonene ikke ligger høyere plassert enn teksten. */
+    float: center;
+    margin-bottom: 0;
+    margin-top: 45px;
+    font-size: 16px;
+    /*telefon og mail ikonet, samt gjøre at kommer på samme linje */
+}
+
+.icons a {
+    margin-left: 30px;
+    margin-right: 7px;
+    /*plassering for ikonene*/
+}
+
+
+.container:hover > .card {
+    cursor: pointer;
+    transform: rotateY(180deg) rotateZ(180deg);
+    /*rotasjonen på kortene som at de flippes.*/
+}
+
+.front,
+.back {
+    height: 100%;
+    width: 100%;
+    border-radius: 2rem;
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+    position: absolute;
+    backface-visibility: hidden;
+    /*oppsettet av størrelse, border, shadow for både for fremme og baksiden av kortet.*/
+}
+
+.front {
+    background: #fffbf7d2;
+    text-align: center;
+    color: black;
+    /*fremsiden av kortet, bakgrunnfarge, tekstfarge og hvor teksten skal plasseres.*/
+}
+
+
+.front img {
+    height: 190px;
+    margin-top: 20px;
+    width: 190px;
+    border-radius: 50%;
+    /*profilbilde på forsiden, styrer størrelsen og form*/
+}
+
+.front p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /*styrer høyden på ikonene*/
+}
+
+.back {
+    background: #E07A5F;
+    transform: rotateY(180deg) rotateZ(180deg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    font-size: 16px; 
+    color: #fff1e6;
+    /*oppsettet av baksiden a kortet, bakgrunnsfarge, tekst plassering, tekst farge*/
+}
+
+.back h1 {
+    margin-bottom: 0;
+    margin-top: 40px;
+    text-align: center;
+    /*overskirft oppsett*/
+}
+
+.back ul {
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0;
+    /*liste på baksiden uten å bruke oppsett bulletpoint. på denne måten ble teksten plassert som jeg ønsket på kortene*/
+}
+
+
+
