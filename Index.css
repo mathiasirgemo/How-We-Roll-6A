@@ -62,7 +62,7 @@
  grid-row-start: 2;
  grid-row-end: 2;
  background-color: #ffffffdb;
- text-color: black;
+ color: black;
  
 }
 .innholdTekst {
@@ -71,7 +71,7 @@
  grid-row-start: 3;
  grid-row-end: 4;
  background-color: #ffffffdb;
- text-color: black;
+ color: black;
 }
 .innholdBilde {
  grid-column-start: 9;
