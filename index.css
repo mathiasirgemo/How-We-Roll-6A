@@ -34,7 +34,7 @@
  grid-row-start: 2;
  grid-row-end: 2;
  background-color: #fff1e6; 
- color: #96AABF;
+ color: #2e4562;
  
 }
 .innholdTekst {
@@ -43,7 +43,7 @@
  grid-row-start: 3;
  grid-row-end: 4;
  background-color: #fff1e6; 
- color: #96AABF;
+ color: #2e4562;
 }
 .innholdBilde {
  grid-column-start: 9;
