@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WebRapport</title>
     <div class="banner"> <!--banner på siden-->
         <div class="bannerText">
            <h1>Web-Rapport</h1>
@@ -12,13 +12,14 @@
         </div>
         <div class="navbar"> <!--Meny linjen-->
             <link href="style.css" rel="stylesheet">
+            <link rel="stylesheet" href="webrapport.css">
          <ul>
-            <li><a href="#">Forside</a></li>
-            <li><a href="#">Kontaktkort</a></li>
-            <li><a href="#">WebForm</a></li>
-            <li><a href="#"style="background-color: #1e1f2c;">Web-Rapport</a></li>
-            <li><a href="#">Kalender</a></li>
-            <li><a href="#">Referat</a></li>
+            <li><a href="index.html">Forside</a></li>
+            <li><a href="kontaktkort.html">Kontaktkort</a></li>
+            <li><a href="webform.html">WebForm</a></li>
+            <li><a href="webrapport.html"style="background-color: #1e1f2c;">Web-Rapport</a></li>
+            <li><a href="kalender.html">Kalender</a></li>
+            <li><a href="referatside.html">Referat</a></li>
 
             
 
@@ -34,7 +35,7 @@
         
 
     </label>
-    <canvas id ="Rapport" width="1000" height="5000" style="margin-left: 100px; margin-top: 30px;" > 
+    <canvas id ="Rapport" width="1000" height="5000"> 
     </canvas>
 
     <script>
@@ -84,15 +85,6 @@ let urls = [
         //valueBlock1.push(bruker8[0])  
 
 
-        //Function for å knytte sirkler til bruker
-    function cirleName(X, Y, radius, draw1, draw2, ToF) {
-        var fargeA = 99;
-
-        ctx.beginPath();
-        ctx.arc(X, Y, radius, draw1, draw2, ToF);
-        ctx.strokeStyle = (fargeA + fargeB + fargeC);
-        ctx.stroke();
-    }
     
 
     function tegnRapport(navn1, navn2, moveFuncDown, liste){
@@ -101,8 +93,8 @@ let urls = [
         const ctx = canvas.getContext("2d");
 
         //variabel for å styre farge
-        var fargeB = 0;
-        var fargeC = 0;
+
+        fargeListe = ["red", "orange", "green", "blue", "black", "grey", "purple"]
 
         //For å lese riktig index i array
         lesValue = 0
@@ -129,18 +121,10 @@ let urls = [
             rectangle(0, 23 + moveFuncDown, 420, 300, "solid", "#ffad96");
 
 
-        //Funkjson for å lage tommel på tabell
-        function cirle(X, Y, radius, draw1, draw2, ToF) {
-            var fargeA = 99;
-
-            ctx.beginPath();
-            ctx.strokeStyle = (fargeA + fargeB + fargeC);
-            ctx.arc(X, Y, radius, draw1, draw2, ToF);
-            ctx.stroke();
 
 
-        }
-    
+
+ 
 
 
 
@@ -148,8 +132,23 @@ let urls = [
     for (i = 0; i < numberOfUsers; i++) {
         
         lesValue = i
-        fargeB += 18
-        fargeC += 6
+
+
+         //Funkjson for å lage tommel på tabell
+        function cirle(X, Y, radius, draw1, draw2, ToF) {
+
+            fargeRotasjon = i
+
+
+            ctx.beginPath();
+            ctx.strokeStyle = (fargeListe[fargeRotasjon]);
+            ctx.arc(X, Y, radius, draw1, draw2, ToF);
+            ctx.stroke();
+
+  
+
+        }
+
 
         //lager hver sirkel
         cirle(liste[lesValue] + 10, circleVertical + moveFuncDown, 5, 0, 2 * Math.PI, false);

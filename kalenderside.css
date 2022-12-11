@@ -1,3 +1,4 @@
+/* Fjerner margin og paddin fra standard nettleser */
 *{
   margin: 0;
   padding: 0;

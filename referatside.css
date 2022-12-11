@@ -1,7 +1,9 @@
+/* Fjerner standard margin og paddin fra nettleser */
 *{
    margin: 0;
    padding: 0;
 }
+/* Setter style på form */
 #referatform{
    margin-left: auto;
    margin-right: auto;
