@@ -25,11 +25,12 @@
             <h5>På denne siden fyller du inn referat fra gruppemøter</h5>
          </div>
       </div>
+      <!-- Form for å fyll inn referat -->
          <div>
             <form id='referatform' action='https://bacit.info/' method='post'> <!--Poster data til bacit server-->
             <label for='dato'>Dagens Dato</label>
            <input type='date' name='dato' id='dato' required>
-          <label>Navn på referent</label> 
+          <label>Navn på referent</label>
           <input type='text' name='referent' id='Referent'>
           <label for='oppmøte'>Hvor mange var på gruppemøte?</label>
           <input type='number' id='oppmøte' min='1' max='7'>
@@ -39,12 +40,14 @@
           <textarea id="agendaNeste" name="agendaNeste" rows="5"></textarea>
           <button id='referatbtn' type='submit'>Lagre Referat</button>
          </form>
+         <!-- Her kommer resultatene -->
          <div>
             <span id='data'>
             </span>
          </div>
          </div>
 <script>
+   // Lager variabel fra html
  let myForm = document.getElementById('referatform');
 
 let table = document.getElementById('data');
@@ -53,6 +56,7 @@ myForm.addEventListener('submit', (e)=>{
    submit();
 });
 
+// Henter alle elementene ved bruk av ID fra html
 const submit = ()=>{
    let dato = document.getElementById('dato').value;
    let referent = document.getElementById('Referent').value;
@@ -60,7 +64,7 @@ const submit = ()=>{
    let hRefferat = document.getElementById('hovedreferat').value; //henter element fra html
    let agenda = document.getElementById('agendaNeste').value;
 
-
+// Lager array med elementene
    let newArray = [dato,referent,oppmøte,hRefferat,agenda];
    newArray.forEach((item)=>{
       var li = document.createElement('li');

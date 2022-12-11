@@ -6,68 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webform</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="webform.css">
 </head>
 <body>
     <div class="banner">
+      <div class="navbar">
+        <ul>
+          <li><a href="index.html">Forside</a></li>
+          <li><a href="kontaktkort.html">Kontaktkort</a></li>
+          <li><a href="webform.html" style="background-color: black;">WebForm</a></li>
+          <li><a href="webrapport.html">Web-Rapport</a></li>
+          <li><a href="kalender.html">Kalender</a></li>
+          <li><a href="referatside.html">Referat</a></li>
+        </ul>
         <div class="bannerText">
            <h1>Webform</h1>
            <h5>Fylle ut data som skal visualiseres i Web-Rapport</h5>
         </div>
-    <div class="navbar">
-        <ul>
-           <li><a href="#">Forside</a></li>
-           <li><a href="#">Kontaktkort</a></li>
-           <li><a href="#" style="background-color: black;">WebForm</a></li>
-           <li><a href="#">Web-Rapport</a></li>
-           <li><a href="#">Kalender</a></li>
-           <li><a href="#">Referat</a></li>
-        </ul>
         </div>
             <h3>Fyll ut informasjon</h3>
         <form method="post">
          <table> 
+      <!-- Navn på bruker -->
             <tr>
-                <td>    <label for="fname"></label></td>
-                <td>    <input type="text" id="fname" name= "navn" class="slider" placeholder="Fyll inn ditt fornavn"> </td>
+                <td>    <label class="labelV" for="fname">Fornavn</label></td>
+                <td>    <input type="text" id="fname" name= "navn" class="slider" placeholder="Fyll inn ditt fornavn" required> </td>
             </tr>
+            <!-- Telefonnummer til bruker -->
             <tr>
-               <td>    <label for="tlf"></label></td>
-               <td>    <input type="text" id="telefon" name= "Telefonnummer" class="slider" placeholder="Fyll inn ditt Telefonnummer"> </td>
+               <td>    <label class="labelV" for="tlf">Telefonnummer</label></td>
+               <td>    <input type="text" id="telefon" name= "Telefonnummer" class="slider" placeholder="Fyll inn ditt Telefonnummer" required> </td>
            </tr>
+           <!-- Epostadresse til bruker -->
            <tr>
-            <td>    <label for="epost"></label></td>
-            <td>    <input type="text" id="epost" name= "Epost" class="slider" placeholder="Fyll inn din epost"> </td>
+            <td>    <label class="labelV" for="epost">Epostadresse</label></td>
+            <td>    <input type="text" id="epost" name= "Epost" class="slider" placeholder="Fyll inn din epost" required> </td>
         </tr>
+        <!-- Er brukeren mest produktiv om morgen eller kvelden? -->
         <tr>
-            <td>    <label for="MK">Morgenfugl</label></td>
+            <td>    <label class="labelV" for="MK">Morgenfugl</label></td>
             <td>    <input type="range" id="MK" name= "MorgenfuglEllerNatteravn" class="slider" step="1"> </td>
-            <td>    <label for="MK">Natteravn</label></td>
+            <td>    <label class="labelH" for="MK">Natteravn</label></td>
         </tr>
+        <!-- Liker brukeren å jobbe i grupper eller alene? -->
         <tr>
-            <td>    <label for="GruppeEllerAlene">Jobber best i gruppe</label>   </td>
+            <td>    <label class="labelV" for="GruppeEllerAlene">Jobber best i gruppe</label>   </td>
             <td>    <input type="range" id="WorkOnItTogether" name= "GruppeEllerAlene" class="slider" min="0" max="100" step="1" />    </td>
-            <td>    <label for="GruppeEllerAlene">Jobber best alene</label>  </td>
+            <td>    <label class="labelH" for="GruppeEllerAlene">Jobber best alene</label>  </td>
         </tr>
+        <!-- Hvordan vil brukeren få forklart en oppgave/prosjekt? -->
         <tr>
-         <td>    <label for="Forklaring">Forklar meg nøye</label>   </td>
+         <td>    <label class="labelV" for="Forklaring">Forklar meg nøye</label>   </td>
          <td>    <input type="range" id="Forklaring" name= "Forklaring" class="slider" min="0" max="100" step="1" />    </td>
-         <td>    <label for="Forklaring">Gå rett på sak</label>  </td>
+         <td>    <label class="labelH" for="Forklaring">Gå rett på sak</label>  </td>
      </tr>
+     <!-- Liker brukeren faste arbeidstimer eller fleksibel arbeidstid? -->
      <tr>
-      <td>    <label for="Arbeidstid">Fast Tid</label>   </td>
+      <td>    <label class="labelV" for="Arbeidstid">Fast Tid</label>   </td>
       <td>    <input type="range" id="Arbeidstid" name= "Arbeidstid" class="slider" min="0" max="100" step="1" />    </td>
-      <td>    <label for="Arbeidstid">Fleksibel Tid</label>  </td>
+      <td>    <label class="labelH" for="Arbeidstid">Fleksibel Tid</label>  </td>
   </tr>
+  <!-- Er brukeren introvert eller ekstrovert? -->
   <tr>
-   <td>    <label for="IntrovertEllerEkstrovert">Introvert</label>   </td>
+   <td>    <label class="labelV" for="IntrovertEllerEkstrovert">Introvert</label>   </td>
    <td>    <input type="range" id="IntrovertEllerEkstrovert" name= "IntrovertEllerEkstrovert" class="slider" min="0" max="100" step="1" />    </td>
-   <td>    <label for="IntrovertEllerEkstrovert">Ekstrovert</label>  </td>
+   <td>    <label class="labelH" for="IntrovertEllerEkstrovert">Ekstrovert</label>  </td>
 </tr>
-            
+            <!-- Knapp for å sende inn skjema -->
    <button type="submit" class="submitButton">Submit</button>
         </form>
-        
+        <!-- Her kommer resultatene fra skjemaet -->
     <div id="Form"; class="results">
       <h2>Form Data</h2>
       <pre></pre>
@@ -90,7 +98,7 @@
         });
         return response.json(); // parses JSON response into native JavaScriptobjects
       }
-
+// Skriver data under results i html dokumentet
       function formData(event) {
         event.preventDefault();
         const data = new FormData(event.target);
