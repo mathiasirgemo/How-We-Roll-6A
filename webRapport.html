@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <div class="banner"> <!--banner på siden-->
+        <div class="bannerText">
+           <h1>Web-Rapport</h1>
+           <h5>GRUPPE 6A</h5>
+        </div>
+        <div class="navbar"> <!--Meny linjen-->
+            <link href="style.css" rel="stylesheet">
+         <ul>
+            <li><a href="#">Forside</a></li>
+            <li><a href="#">Kontaktkort</a></li>
+            <li><a href="#">WebForm</a></li>
+            <li><a href="#"style="background-color: #1e1f2c;">Web-Rapport</a></li>
+            <li><a href="#">Kalender</a></li>
+            <li><a href="#">Referat</a></li>
+
+            
+
+         </ul>
+
+         
+     </div>
+
+
+</head>
+<body>
+
+        
+
+    </label>
+    <canvas id ="Rapport" width="1000" height="5000" style="margin-left: 100px; margin-top: 30px;" > 
+    </canvas>
+
+    <script>
+
+
+let urls = [
+        "https://bacit.info/hwr/20221210224318-6faee7deb6806f1d416825f5eadb564d.json", //Josef 
+        "https://bacit.info/hwr/20221210224820-db490a7a8870e4f281fa21e549d001f9.json", //Lucas 
+        "https://bacit.info/hwr/20221210223908-2aa5300ddbcaf3dda4c5011e70897a3f.json", //Erik 
+        "https://bacit.info/hwr/20221210224200-0d623384f4a7c6ee26bfb31118580ae1.json", //Thomas 
+        "https://bacit.info/hwr/20221210224110-263617ff45b1e36985bd9ba9d0af34d9.json", //Mathias 
+        "https://bacit.info/hwr/20221210223957-c71661bea595ddd3613512eab105903d.json", //Ine 
+        "https://bacit.info/hwr/20221210224412-4c55e2211b7146bcf0e12b578e114eff.json", //Jaime 
+      ];
+
+      //Mottar flere inputs og returnerer en promise
+      Promise.all(
+        //Lager en ny array fra inputten
+        urls.map((url) =>
+          //henter en ressurs fra nettverket
+          fetch(url)
+        .then((response) => response.json())
+        )).then((dataJSON) => {
+
+
+        //Gjør dataen til lokale variabler. Fordeler hver index fra listen
+        let josef = dataJSON[0];
+        let lucasz = dataJSON[1];
+        let erik = dataJSON[2];
+        let thomas = dataJSON[3];
+        let mathias = dataJSON[4];
+        let ine = dataJSON[5];
+        let jaime = dataJSON[6];
+
+        console.log(josef);
+
+        
+
+        //Informasjon fra hver slider for hver bruker. Dette er informasjon som skal vises på siden. 
+        valueBlock1 = [josef.MorgenfuglEllerNatteravn * 4, lucasz.MorgenfuglEllerNatteravn * 4, erik.MorgenfuglEllerNatteravn * 4, thomas.MorgenfuglEllerNatteravn * 4, mathias.MorgenfuglEllerNatteravn * 4, ine.MorgenfuglEllerNatteravn * 4, jaime.MorgenfuglEllerNatteravn * 4]
+        valueBlock2 = [josef.GruppeEllerAlene * 4, lucasz.GruppeEllerAlene * 4, erik.GruppeEllerAlene * 4, thomas.GruppeEllerAlene * 4, mathias.GruppeEllerAlene * 4, ine.GruppeEllerAlene * 4, ine.GruppeEllerAlene * 4]
+        valueBlock3 = [josef.Forklaring * 4, lucasz.Forklaring * 4, erik.Forklaring * 4, thomas.Forklaring * 4 , mathias.Forklaring * 4, ine.Forklaring * 4, jaime.Forklaring * 4]
+        valueBlock4 = [josef.Arbeidstid * 4, lucasz.Arbeidstid * 4, erik.Arbeidstid * 4, thomas.Arbeidstid * 4, mathias.Arbeidstid * 4, ine.Arbeidstid * 4, jaime.Arbeidstid * 4]
+        valueBlock5 = [josef.IntrovertEllerEkstrovert * 4, lucasz.IntrovertEllerEkstrovert * 4, erik.IntrovertEllerEkstrovert * 4, thomas.IntrovertEllerEkstrovert * 4, mathias.IntrovertEllerEkstrovert * 4, ine.IntrovertEllerEkstrovert * 4, jaime.IntrovertEllerEkstrovert * 4]
+
+        //Legger til informasjon fra ny bruker i valueBlock array
+        //valueBlock1.push(bruker8[0])  
+
+
+        //Function for å knytte sirkler til bruker
+    function cirleName(X, Y, radius, draw1, draw2, ToF) {
+        var fargeA = 99;
+
+        ctx.beginPath();
+        ctx.arc(X, Y, radius, draw1, draw2, ToF);
+        ctx.strokeStyle = (fargeA + fargeB + fargeC);
+        ctx.stroke();
+    }
+    
+
+    function tegnRapport(navn1, navn2, moveFuncDown, liste){
+
+        const canvas = document.getElementById("Rapport");
+        const ctx = canvas.getContext("2d");
+
+        //variabel for å styre farge
+        var fargeB = 0;
+        var fargeC = 0;
+
+        //For å lese riktig index i array
+        lesValue = 0
+
+        
+        //Hentes via fetch API - styrer høyde på tabell og antall sirkler
+        var numberOfUsers = 7;
+
+
+        //Høyden på sirklene
+        circleVertical = 60
+        ctx.lineWidth = 10;
+
+
+        //Funksjon for bakgrunn
+        function rectangle(x, y, bredde, hoyde, fyllType, farge) {
+                ctx.fillStyle = farge;
+                ctx.fillRect(x,y,bredde, numberOfUsers*50);
+
+            }
+
+            rectangle(0, 0 + moveFuncDown, 420, 30, "solid","#3d405b")
+
+            rectangle(0, 23 + moveFuncDown, 420, 300, "solid", "#ffad96");
+
+
+        //Funkjson for å lage tommel på tabell
+        function cirle(X, Y, radius, draw1, draw2, ToF) {
+            var fargeA = 99;
+
+            ctx.beginPath();
+            ctx.strokeStyle = (fargeA + fargeB + fargeC);
+            ctx.arc(X, Y, radius, draw1, draw2, ToF);
+            ctx.stroke();
+
+
+        }
+    
+
+
+
+    //Hvis antall sirkler er lavere enn antall brukere, øk antall sirkler med 1
+    for (i = 0; i < numberOfUsers; i++) {
+        
+        lesValue = i
+        fargeB += 18
+        fargeC += 6
+
+        //lager hver sirkel
+        cirle(liste[lesValue] + 10, circleVertical + moveFuncDown, 5, 0, 2 * Math.PI, false);
+
+
+        //Knyttter sirkler til de ulike brukerne
+        cirle(600, circleVertical, 5, 0, 2 * Math.PI, false);
+
+        ctx.font = "17px Arial";
+        ctx.fillStyle = "black"
+        ctx.fillText(dataJSON[i].navn, 620, circleVertical+ 7)
+
+        //Endrer den neste sirkelen sin vertikale lokasjon og farge
+        circleVertical += 40;
+
+
+
+    }
+
+    //Canvas tekst
+    ctx.fillStyle = "white";
+    ctx.fillText(navn1, 5, 18 + moveFuncDown);
+    ctx.fillText(navn2, 310, 18 + moveFuncDown);
+
+    //Linje i midten av "brettene"
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "#3d405b"
+    ctx.moveTo(210, 23 + moveFuncDown);
+    ctx.lineTo(210, (numberOfUsers*52) + moveFuncDown);
+    ctx.stroke();
+
+    //Skriver i konsoll hvor mange brukere som er registrert
+    console.log("antall brukere er " + numberOfUsers)
+
+
+
+}
+
+
+
+
+//Kaller på funksjon. Navn, brukere, høyde og hvilken array det skal lese fra
+tegnRapport("morgenFugl", "nattravn", 0, valueBlock1);
+
+tegnRapport("gruppearbeid", "alenearbeid", 600, valueBlock2);
+
+tegnRapport("planlegger", "spontan", 1200, valueBlock3);
+
+tegnRapport("fast tid", "fleksibel tid", 1800, valueBlock4);
+
+tegnRapport("Introvert", "Ekstrovert", 2400, valueBlock5);
+
+
+})
+
+
+
+
+    </script>
+    </body>
+    </html>
