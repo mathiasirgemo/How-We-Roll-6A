@@ -1,0 +1,50 @@
+html{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background:#fff1e6;
+}
+ 
+    /*Denne er til navbar */
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #3d405b;
+    text-align: center;
+    /* fjerner bullet points i lista */
+}
+
+.navbar li {
+    display: inline-flex;
+    /*setter nav-baren på samme linje */
+
+}
+.navbar li a{
+    text-decoration: none;
+}
+
+.navbar li a:hover{
+    background-color: #1e1f2c;
+    /*endrer bakgrunnsfargen på li a ved hover */
+}
+ 
+.navbar ul li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 8px 10px;
+}
+ 
+ /* Banner */
+.banner{
+    background-color: #E07A5F;
+    width: 100%;
+    height: 200px;
+    color: #fff1e6;
+}
+
+.bannerText {
+    text-align: center;
+    padding: 2px;
+    font-size: 25px;
+}

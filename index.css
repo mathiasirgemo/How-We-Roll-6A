@@ -1,0 +1,73 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+ 
+ /* Banner tidligere version før felles ble valgt.
+ .banner{
+    background-color: aqua;
+    width: 100%;
+    height: 20vh;
+    }
+ .bannerText {
+    text-align: center;
+    padding: 2px;
+    font-size: 25px;
+ }
+*/
+
+ /* Innhold */
+ .innhold {
+   display: grid;
+   align-items: center;
+   width: auto;
+   height: 70vh;
+   grid-template-columns: repeat(14, 1fr); /* 14 kolonner */
+   grid-template-rows: repeat(6, 100px); /* 6 rader */
+   background-color: #fff1e6;
+   padding: 0px;
+   grid-auto-flow: dense;
+}
+.innholdTittel {
+ grid-column-start: 2;
+ grid-column-end: 5;
+ grid-row-start: 2;
+ grid-row-end: 2;
+ background-color: #fff1e6; 
+ color: #2e4562;
+ 
+}
+.innholdTekst {
+ grid-column-start: 2;
+ grid-column-end: 6;
+ grid-row-start: 3;
+ grid-row-end: 4;
+ background-color: #fff1e6; 
+ color: #2e4562;
+}
+.innholdBilde {
+ grid-column-start: 9;
+ grid-column-end: 13;
+ grid-row-start: 2;
+ grid-row-end: 5;
+}
+
+/*Bilde */
+.img {
+ width:100%;
+ height: 100%;
+ float:left; 
+  margin:0;
+}
+
+
+/*Filter for bilder styles for eksperimentering for hvilken filter passer best*/
+.saturate { filter: saturate(3); }
+.grayscale { filter: grayscale(100%); }
+.contrast { filter: contrast(160%); }
+.brightness { filter: brightness(0.25); }
+.blur { filter: blur(3px); }
+.invert { filter: invert(100%); }
+.sepia { filter: sepia(100%); }
+.huerotate { filter: hue-rotate(180deg); }
+.rss.opacity { filter: opacity(50%); }

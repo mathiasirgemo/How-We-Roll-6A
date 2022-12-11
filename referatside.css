@@ -1,0 +1,39 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+#referatform{
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 25px;
+   width: 600px;
+   display: flex;
+   flex-direction: column;
+   align-items: left;
+   border: 2px dotted;
+   border-color: black;
+}
+   label{
+      margin: auto;
+      font-size: 20px;
+   }
+   #referatbtn{
+      height: 50px;
+   }
+   #referat{
+      margin-top: 150px;
+      display: flex;
+      justify-content: center;
+      font-size: 30px;
+      font-style: italic;
+   }
+   #data{
+      margin-left: 30%;
+      display: flex;
+      flex-flow: column;
+   }
+   .header{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }

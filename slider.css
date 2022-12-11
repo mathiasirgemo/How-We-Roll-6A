@@ -1,0 +1,105 @@
+.slider_border {
+    border: transparent;
+    border-style: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px
+}
+.myForm{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+}
+.align_left {
+    float:left;
+}
+.align_right {
+    float: right;
+}
+
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 15px; /* Specified height */
+    background: #ffad96; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance:none;
+    width: 18px;
+    height: 18px;
+    background-color:#dd6443;
+    border-radius: 15px;
+}
+
+.slider:hover{
+    cursor: pointer;
+    background: #ff997c;
+}
+.slider:active{
+    cursor:grab;
+}
+.form {
+    margin-top: 1.2%;
+    text-align: center;
+    color: black;
+}
+
+.submitButton {
+    color:white;
+    border-color:transparent; 
+    margin: auto;
+    display: flex;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    background-color:#E07A5F;
+}
+
+.submitButton:hover{
+    cursor:pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px 0 lightgrey;
+}
+
+.submitButton:active{
+    background-color: #db5935;
+}
+.input1{
+    margin-top: 1%;
+    text-align: center;
+    display: block;
+}
+
+input:focus::placeholder {
+    color: transparent;
+  }
+ 
+h3 {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+
+label {
+    color:black
+}
+
+form, .form{
+    color:black!important;
+    text-align: center;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 100%;
+}
