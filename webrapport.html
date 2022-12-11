@@ -84,15 +84,6 @@ let urls = [
         //valueBlock1.push(bruker8[0])  
 
 
-        //Function for å knytte sirkler til bruker
-    function cirleName(X, Y, radius, draw1, draw2, ToF) {
-        var fargeA = 99;
-
-        ctx.beginPath();
-        ctx.arc(X, Y, radius, draw1, draw2, ToF);
-        ctx.strokeStyle = (fargeA + fargeB + fargeC);
-        ctx.stroke();
-    }
     
 
     function tegnRapport(navn1, navn2, moveFuncDown, liste){
@@ -101,8 +92,8 @@ let urls = [
         const ctx = canvas.getContext("2d");
 
         //variabel for å styre farge
-        var fargeB = 0;
-        var fargeC = 0;
+
+        fargeListe = ["red", "orange", "green", "blue", "black", "grey", "purple"]
 
         //For å lese riktig index i array
         lesValue = 0
@@ -129,18 +120,10 @@ let urls = [
             rectangle(0, 23 + moveFuncDown, 420, 300, "solid", "#ffad96");
 
 
-        //Funkjson for å lage tommel på tabell
-        function cirle(X, Y, radius, draw1, draw2, ToF) {
-            var fargeA = 99;
-
-            ctx.beginPath();
-            ctx.strokeStyle = (fargeA + fargeB + fargeC);
-            ctx.arc(X, Y, radius, draw1, draw2, ToF);
-            ctx.stroke();
 
 
-        }
-    
+
+ 
 
 
 
@@ -148,8 +131,23 @@ let urls = [
     for (i = 0; i < numberOfUsers; i++) {
         
         lesValue = i
-        fargeB += 18
-        fargeC += 6
+
+
+         //Funkjson for å lage tommel på tabell
+        function cirle(X, Y, radius, draw1, draw2, ToF) {
+
+            fargeRotasjon = i
+
+
+            ctx.beginPath();
+            ctx.strokeStyle = (fargeListe[fargeRotasjon]);
+            ctx.arc(X, Y, radius, draw1, draw2, ToF);
+            ctx.stroke();
+
+  
+
+        }
+
 
         //lager hver sirkel
         cirle(liste[lesValue] + 10, circleVertical + moveFuncDown, 5, 0, 2 * Math.PI, false);
